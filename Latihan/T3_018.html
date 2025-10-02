@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hitung Nilai Minimum, Maksimum, dan Rata-rata  - T3_018</title>
+</head>
+<body>
+  <h1>Hitung Nilai Minimum, Maksimum, dan Rata-rata - T3_018</h1>
+
+  <label for="inputArray">Masukkan angka (pisahkan dengan koma):</label>
+  <input type="text" id="inputArray" placeholder="Contoh: 10, 20, 30, 40, 50">
+  <button onclick="hitungDanTampilkan()">Hitung</button>
+
+  <div id="result"></div>
+
+
+  <script>
+    function hitungDanTampilkan() {
+      const input = document.getElementById('inputArray').value;
+      const array = input.split(',').map(num => parseFloat(num.trim()));
+
+      // Validasi input
+      if (array.some(isNaN)) {
+        alert("Masukkan array yang valid dengan angka yang benar.");
+        return;
+      }
+
+      const min = Math.min(...array);
+      const max = Math.max(...array);
+      const rataRata = array.reduce((acc, val) => acc + val, 0) / array.length;
+
+      // Format rata-rata: jika bulat, tampilkan tanpa koma, jika tidak bulat, tampilkan 2 digit
+      let rataRataStr = (rataRata % 1 === 0) ? rataRata.toString() : rataRata.toFixed(2);
+      // Hilangkan trailing .00 jika hasil bulat
+      if (rataRataStr.endsWith('.00')) rataRataStr = rataRataStr.slice(0, -3);
+
+      document.getElementById('result').innerHTML = `
+        <p>Array Angka: [${array.join(', ')}]</p>
+        <p>Nilai Minimum: ${min}</p>
+        <p>Nilai Maksimum: ${max}</p>
+        <p>Nilai Rata-rata: ${rataRataStr}</p>
+      `;
+    }
+  </script>
+</body>
+</html>

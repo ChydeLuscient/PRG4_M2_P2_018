@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cetak angka - T2_018</title>
+</head>
+<body>
+  <h1>Pencetak Angka - T2_018</h1>
+
+  <div id="result"></div>
+
+  <script>
+    function cetakAngka() {
+      let hasil = "";
+      for (let i = 1; i <= 100; i++) {
+        if (i % 15 === 0) {
+          hasil += "MI2A";
+        } else if (i % 3 === 0) {
+          hasil += "MI";
+        } else if (i % 5 === 0) {
+          hasil += "2A";
+        } else {
+          hasil += i;
+        }
+        hasil += (i < 100) ? ", " : ""; // Tambahkan koma kecuali setelah angka terakhir
+      }
+      document.getElementById('result').innerHTML = hasil;
+    }
+    cetakAngka();
+  </script>
+</body>
+</html>
